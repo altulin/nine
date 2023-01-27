@@ -1,0 +1,44 @@
+
+mixin svg(name)
+  - const sprite = `${baseDir}img/sprite.svg`
+  svg&attributes({'class': 'bar'}) // {'class': 'bar'} viewBox нужен для адаптивности
+    use(xlink:href= `${sprite}#${name}`)
+
+
+//- +img-retina(``, ``, ``, ``, ``, ``)
+mixin img-retina(name, type, alt, className, width, height, ...args)
+  - let srcsetAttr = attributes.lazy ? 'data-srcset' : 'srcset';
+  - let srcAttr = attributes.lazy ? 'data-src' : 'src';
+  - let sourceWebp = {};
+  - let img = {};
+
+  - sourceWebp[srcsetAttr] = `${baseDir}img/webp/${name}.webp 1x, ${baseDir}img/webp/${name}@2x.webp 2x`;
+  - img.class = attributes.lazy ? `lazyload ${className}` : `${className}`;
+  - img[srcAttr] = `${baseDir}img/${name}.${type}`;
+  - img[srcsetAttr] = `${baseDir}img/${name}.${type} 1x, ${baseDir}img/${name}@2x.${type} 2x`;
+  - img.alt = alt;
+  - img.width = width;
+  - img.height = height;
+
+  picture
+    if args.length > 0
+      - let sourceArgsWebp = {};
+      - let sourceArgs = {};
+
+
+      each item in args
+        - sourceArgsWebp[srcsetAttr] = `${baseDir}img/webp/${name}-${item}.webp 1x, ${baseDir}img/webp/${name}-${item}@2x.webp 2x`;
+        - sourceArgs[srcsetAttr] = `${baseDir}img/${name}-${item}.${type} 1x, ${baseDir}img/${name}-${item}@2x.${type} 2x`;
+        - let media = `(max-width: ${item}px)`
+
+        source(media = `${media}` type="image/webp")&attributes(sourceArgsWebp)
+        source(media = `${media}` type= type==='jpg'?"image/jpeg":`image/${type}`  )&attributes(sourceArgs)
+
+    source(type="image/webp")&attributes(sourceWebp)
+    img&attributes(img)
+
+
+
+//- +img-svg(``, ``, ``, ``, ``, ``)
+mixin img-svg(name, className, alt, width, height)
+  img(class=`${className}` src=`${baseDir}img/svg/${name}.svg` alt=alt width=width height=height loading="lazy")

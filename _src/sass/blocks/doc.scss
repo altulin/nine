@@ -1,0 +1,61 @@
+.doc {
+  padding-top: 50px;
+  margin-bottom: 100px;
+  @include font("Gilroy");
+  color: #7a838d;
+
+  & h1 {
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+
+  & p {
+    font-size: rem(18);
+    line-height: rem(24);
+
+    & + p {
+      margin-top: 20px;
+    }
+  }
+
+  & li {
+    list-style: auto;
+
+    & + li {
+      margin-top: 10px;
+    }
+  }
+
+  & ul {
+    padding-left: revert;
+
+    & + p {
+      margin-top: 20px;
+    }
+  }
+
+  & + h3 {
+    margin-top: 60px;
+  }
+
+  & h3 {
+    font-size: rem(20);
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 60px;
+  }
+
+  &__line {
+    height: 1px;
+    display: block;
+    background-color: #e0e3ee;
+    box-sizing: border-box;
+    margin-top: 33px;
+    margin-bottom: 33px;
+  }
+
+  & hr + p {
+    color: #90969e;
+  }
+}

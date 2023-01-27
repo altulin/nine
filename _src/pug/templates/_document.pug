@@ -1,0 +1,16 @@
+doctype html
+html(lang="ru")
+	include ../modules/_head.pug
+		include ../modules/_style-doc
+
+	body.page-body
+		- var document = true
+		include ../modules/_header.pug
+
+
+		main.page-main
+			block content
+
+		include ../modules/_footer.pug
+
+		include ../modules/_scripts.pug

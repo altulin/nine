@@ -1,0 +1,13 @@
+-const link = [[`Пакеты инвестиций`, `/office-packages.html`], [`Реферальная программа`, `/office-referral.html`], [`Вывод вознаграждения`, `/office-reward.html`], [`Обучение партнеров`, `/office-education.html`]]
+
+.office-body__left.body-asside
+	asside.body-asside__box
+		a.body-asside__logo(href="/index.html")
+			+img-retina(`logo`, `png`, `логотип`, `logo__img`, `164`, `52`)
+
+		nav.body-asside__nav.asside-nav
+			ul.asside-nav__list
+				each val, i in link
+					li.asside-nav__item
+						a.asside-nav__link(href=`${val[1]}` class=(active===i+1 ? `asside-nav__link--active` : ``))= val[0]
+						//- a.asside-nav__link(href=(active===i+1 ? `#` : href=`${val[1]}`) class=(active===i+1 ? `asside-nav__link--active` : ``))= val[0]

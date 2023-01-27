@@ -1,0 +1,15 @@
+//
+.header {
+  @include padding-top(100px);
+
+  &__logo {
+    display: block;
+    width: 200px;
+    height: 100px;
+    background-color: tomato;
+
+    @include hocus() {
+      background-color: green;
+    }
+  }
+}

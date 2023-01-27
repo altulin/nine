@@ -1,0 +1,14 @@
+doctype html
+html(lang="ru")
+  include ../helpers/arrays
+  include ../modules/_head
+    include ../modules/_style
+
+  body.page-body
+    include ../modules/_header
+
+    main.page-main
+      block content
+
+    include ../modules/_footer
+    include ../modules/_scripts
